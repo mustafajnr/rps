@@ -1,0 +1,11 @@
+version: "3.8"
+services:
+  base:
+    build:
+      context: .
+      dockerfile: ./images/common/Dockerfile.builder
+    image: rps_builder:dev
+  rps:
+    build:
+      context: .
+      dockerfile: ./images/demo/Dockerfile
