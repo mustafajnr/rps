@@ -28,17 +28,11 @@ namespace rps {
     void Game::start()
     {
         printStatus();
-        spdlog::info("A game has started between {} and {}.",
-                     player1_.player_->getName(),
-                     player2_.player_->getName());
         while (!isFinished_)
         {
             step();
             printStatus();
         }
-        spdlog::info("Game has finished between {} and {}.",
-                     player1_.player_->getName(),
-                     player2_.player_->getName());
     }
 
     void Game::step()
@@ -79,6 +73,8 @@ namespace rps {
 
     void Game::applyDamage(Game::PlayerRecord& playerRecord, uint64_t damage)
     {
+        std::cout << "Damage +" << damage << " to "
+                  << playerRecord.player_->getUsername() << '\n';
         if (playerRecord.lifebar_ <= damage)
         {
             playerRecord.lifebar_ = 0;

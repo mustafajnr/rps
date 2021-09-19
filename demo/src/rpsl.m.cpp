@@ -1,5 +1,4 @@
-#include "game.h"
-#include "player.h"
+#include "world.h"
 #include "common.h"
 
 #include <iostream>
@@ -8,19 +7,19 @@
 
 int main()
 {
-    rps::PlayerPtr player1 = std::make_shared<rps::Player>(
-        "mustafajnr",
-        "Mustafa Abdeltawwab");
-    
-    rps::PlayerPtr player2 = std::make_shared<rps::Player>("elsayed.tawab", "El-Sayed Abdeltawwab");
+    rps::World world("Astadia");
+    world.addPlayer("mustafajnr", "Mustafa Abdeltawwab");
+    world.addPlayer("elsayed.tawab", "El-Sayed Abdeltawwab");
 
-    uint64_t numberOfGames = 10;
-    while (numberOfGames--)
+    uint64_t numberOfGames = 0;
+    while (numberOfGames++ <= 10)
     {
-        std::cout << "Player 1: " << *player1 << '\n';
-        std::cout << "Player 2: " << *player2 << '\n';
-        rps::GamePtr game = std::make_shared<rps::Game>(player1, player2);
-        game->start();
+        std::string gameName = "Game #" + std::to_string(numberOfGames);
+        world.createGame(
+            gameName,
+            "mustafajnr",
+            "elsayed.tawab");
+        world.startGame(gameName);
     }
     return 0;
 }
