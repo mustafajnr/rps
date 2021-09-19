@@ -9,7 +9,8 @@ RUN set -ex; \
     cd /app; \
     ls; \
     cmake .; make
-FROM debian:bullseye
+
+FROM rps_runtime:dev AS runtime
 
 COPY --from=builder /app/bin /usr/local/bin
 

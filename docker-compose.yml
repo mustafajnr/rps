@@ -5,6 +5,11 @@ services:
       context: .
       dockerfile: ./common/images/Dockerfile.builder
     image: rps_builder:dev
+  runtime:
+    build:
+      context: .
+      dockerfile: ./common/images/Dockerfile.runtime
+    image: rps_runtime:dev
   rps:
     build:
       context: ./demo
